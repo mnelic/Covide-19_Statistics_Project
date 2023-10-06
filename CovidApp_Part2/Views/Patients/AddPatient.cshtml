@@ -1,0 +1,33 @@
+﻿@model Patient
+
+@{
+    ViewData["Title"] = "Add patient";
+}
+
+
+
+<h2>Add Patient</h2>
+<div class="text-danger" asp-validation-summary="All"></div>
+<form asp-controller="Patients" asp-action="AddPatient" method="post">
+    <div class="form-group">
+        <label asp-for="@Model.PatientAge"></label>
+        <input asp-for="@Model.PatientAge" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.GenderId">Gender</label>
+        <div class="form-group">
+            <select class="form-control" asp-for="@Model.GenderId" asp-items="ViewBag.GenderId">
+                <option value="">---Select Gender--</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.ProvinceId">Province</label>
+        <div class="form-group">
+            <select class="form-control" asp-for="@Model.ProvinceId" asp-items="ViewBag.ProvinceId">
+                <option value="">---Select Province--</option>
+            </select>
+        </div>
+    </div>
+    <button class="btn btn-primary" type="submit">Create</button>
+</form>

@@ -1,0 +1,58 @@
+﻿@model PatientsListViewModel
+
+@if (ViewData["Message"] != null)
+{
+    <div class="alert alert-info alert-dismissible" role="alert">
+        <button type="button" class="close"
+                data-dismiss="alert" aria-label="close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        @ViewData["Message"]
+    </div>
+}
+
+<div class="bg-primary m-1 p-1 text-white"><h4>Patients</h4></div>
+<br />
+@if (User.IsInRole("DataCapturer") || User.IsInRole("Admin"))
+{
+    <a class="btn btn-primary" asp-controller="Patients" asp-action="AddPatient">Add patient</a>
+
+
+    <br />
+    <br />
+    <table class="table table-sm table-bordered">
+        <tr>
+            <th>
+                <a asp-controller="Patients" asp-action="Index" asp-route-sortBy="@ViewData["IdSortParam"]">
+                    Patient Id
+                </a>
+            </th>
+            <th>
+                <a asp-controller="Patients" asp-action="Index" asp-route-sortBy="@ViewData["AgeSortParam"]">
+                    Patient Age
+                </a>
+            </th>
+            <th>
+                <a asp-controller="Patients" asp-action="Index" asp-route-sortBy="@ViewData["GenderSortParam"]">
+                    Gender
+                </a>
+            </th>
+            <th>Province</th>
+        </tr>
+        @if (Model.Patients.Count() == 0)
+        {
+            <tr><td colspan="3" class="text-center">No patients</td></tr>
+        }
+        else
+        {
+            @foreach (var p in Model.Patients)
+            {
+                <partial name="PatientSummary" model="p" />
+            }       }
+    </table>
+    <div page-model="@Model.PagingInfo" page-action="Index" page-classes-enabled="true"
+         page-class="btn" page-class-normal="btn-secondary"
+         page-class-selected="btn-primary" class="btn-group pull-right m-1">
+    </div>
+
+}

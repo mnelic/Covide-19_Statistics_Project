@@ -1,0 +1,32 @@
+﻿@model LoginModel
+@{
+    ViewData["Title"] = "Log in";
+}
+<h2>Log In</h2>
+<br />
+
+<!--Just for Tester and not part of the project-->
+<div style="border:1px solid red">
+    <h5><strong>FOR TESTER</strong>: Please use the <em>ADMIN-DETAILS</em> below for <strong>TESTING</strong> purposes</h5>
+    <h6>Email: admin@health.gov.za</h6>
+    <h6>Password: admin@123</h6>
+</div>
+<!--Tester Section End-->
+
+
+<br />
+<div class="text-danger" asp-validation-summary="ModelOnly"></div>
+<form asp-action="Login" method="post">
+    <input type="hidden" asp-for="ReturnUrl" />
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <div><span asp-validation-for="Email" class="text-danger"></span></div>
+        <input asp-for="Email" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Password"></label>
+        <div><span asp-validation-for="Password" class="text-danger"></span></div>
+        <input asp-for="Password" class="form-control" />
+    </div>
+    <button class="btn btn-primary" type="submit">Log In</button>
+</form>

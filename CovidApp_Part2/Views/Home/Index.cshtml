@@ -1,0 +1,18 @@
+﻿@model BasicStatsGroupViewModel
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="bg-primary m-1 p-1 text-white"><h4>Covid-19 Stats</h4></div>
+
+<br />
+
+<div>
+    <p><i class="fas fa-calendar"></i> Current date: @Model.Date.ToShortDateString()</p>
+    <p><i class="fas fa-chart-line"></i> Total number of tests conducted: @Model.TotalTests</p>
+    <p><i class="fas fa-first-aid"></i> Total number of positive cases identified: @Model.TotalPositiveCases</p>
+    <p><i class="fas fa-child"></i> Total number of recoveries: @Model.TotalRecoveries</p>
+    <p><i class="fas fa-praying-hands"></i> Total number of deaths: @Model.TotalDeaths</p>
+</div>
+
+

@@ -1,0 +1,50 @@
+﻿@model TestStatsGroupViewModel
+
+@{
+    ViewBag.Title = "Tests";
+}
+
+<div class="bg-primary m-1 p-1 text-white"><h4>Tests</h4></div>
+<br />
+
+@if (User.IsInRole("LabTechnician"))
+{
+    <a asp-controller="Tests" asp-action="Create">Create New Test</a>
+}
+<br />
+<!--@if (User.Identity.IsAuthenticated)
+{
+    <p>
+        <a asp-controller="Tests" asp-action="Create">Create New Test</a>
+    </p>
+}-->
+
+<div>
+    <p><i class="fas fa-calendar"></i> Current date: @Model.Date.ToShortDateString()</p>
+
+    <p><i class="fas fa-chart-line"></i> Total number of tests conducted: @Model.TotalTests</p>
+
+    <p>
+        <i class="fas fa-hospital-symbol"></i>
+        Total number of private lab tests: @Model.TotalPrivateLabTests
+        (as @Model.PrivateLabTestsRate().ToString("0.##")% of all tests)
+    </p>
+
+    <p>
+        <i class="fas fa-hospital-alt"></i>
+        Total number of public lab tests: @Model.TotalPublicLabTests
+        (as @Model.PublicLabTestsRate().ToString("0.##")% of all tests)
+    </p>
+
+    <p>
+        <i class="fas fa-user-check"></i>
+        Total number of positive tests: @Model.TotalPositiveTests
+        (as @Model.PositiveTestsRate().ToString("0.##")% of all tests)
+    </p>
+
+    <p>
+        <i class="fas fa-user-times"></i>
+        Total number of negative tests: @Model.TotalNegativeTests
+        (as @Model.NegativeTestsRate().ToString("0.##")% of all tests)
+    </p>
+</div>

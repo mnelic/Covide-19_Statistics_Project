@@ -1,0 +1,57 @@
+﻿@model Patient
+
+@{
+    ViewData["Title"] = "Test Details";
+}
+
+<div>
+    <h4>Patient</h4>
+    <hr />
+    <p>
+        <span class="font-weight-bold">
+            @Html.DisplayNameFor(model => model.PatientId)
+        </span><br />
+        @Model.PatientId
+    </p>
+    <p>
+        <span class="font-weight-bold">
+            @Html.DisplayNameFor(model => model.PatientAge)
+        </span><br />
+        @Model.PatientAge
+    </p>
+    <p>
+        <span class="font-weight-bold">
+            @Html.DisplayNameFor(model => model.Gender.GenderName)
+        </span><br />
+        @Model.Gender.GenderName
+    </p>
+    <p>
+        <span class="font-weight-bold">
+            @Html.DisplayNameFor(model => model.Province.ProvinceName)
+        </span><br />
+        @Model.Province.ProvinceName
+    </p>
+    <br />
+    <br />
+    <table class="table">
+        <tr>
+            <th>Status Date</th>
+            <th>Status Name</th>
+        </tr>
+        @foreach (var status in Model.PatientStatuses.OrderBy(d => d.PatientStatusDate))
+        {
+            <tr>
+                <td>
+                    @status.PatientStatusDate.ToShortDateString()
+                </td>
+                <td>
+                    @status.Status.StatusName
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<div>
+    <a asp-controller="Tests" asp-action="Index">Cancel</a>
+</div>
+

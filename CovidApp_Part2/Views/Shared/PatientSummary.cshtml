@@ -1,0 +1,9 @@
+﻿@model Patient
+
+<tr>
+    <td>@Model.PatientId</td>
+    <td>@Model.PatientAge</td>
+    <td>@Model.Gender.GenderName</td>
+    <td>@Model.Province.ProvinceAbbreviation</td>
+    <td><a class="btn btn-info" asp-controller="Patients" asp-action="PatientDetails" asp-route-id="@Model.PatientId">Details</a></td>
+</tr>
